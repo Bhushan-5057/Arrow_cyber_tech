@@ -55,6 +55,35 @@
   }
 }
 
+:root {
+  /* Matches Header min-heights so page tops sit flush under the fixed nav */
+  --header-offset: 3.5rem; /* 56px — min-h-14 */
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-offset: 4rem; /* 64px — sm:min-h-16 */
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-offset: 4.5rem; /* 72px — md logo / bar */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-offset: 4.5rem; /* 72px — lg:min-h-[4.5rem] */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --header-offset: 5rem; /* 80px — xl:min-h-20 */
+  }
+}
+
 html {
   scrollbar-gutter: stable;
   scrollbar-width: thin;

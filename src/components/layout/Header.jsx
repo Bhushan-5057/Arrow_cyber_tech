@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { servicesData } from "@/data/services";
 import clsx from "clsx";
-import Button from "@/components/ui/Button";
+
+
 export default function Header() {
     const dispatch = useDispatch();
     const pathname = usePathname();
@@ -90,41 +91,33 @@ export default function Header() {
         { label: "Contact Us", href: "/contact" },
     ];
     return (<header className={clsx("fixed top-0 left-0 z-50 w-full transition-all duration-300", isScrolled
-            ? "bg-white/90 backdrop-blur-xl"
-            : "bg-white/70 backdrop-blur-sm")}>
-      <div className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 sm:gap-6 min-w-0">
-        <Link href="/" className="group flex shrink-0 items-center px-1 py-1" aria-label="Arrow CyberTech home">
-          <img src="/assets/logo1.png" alt="Arrow CyberTech logo" className="h-10 w-auto max-w-[min(180px,42vw)] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 md:h-14 lg:h-16 xl:h-20"/>
+            ? "border-b border-slate-200/70 bg-white/95 backdrop-blur-xl"
+            : "border-b border-transparent bg-slate-50/90 backdrop-blur-md")}>
+      <div className="relative mx-auto flex min-h-14 max-w-400 min-w-0 items-center justify-between gap-3 px-4 sm:min-h-16 sm:gap-6 sm:px-6 lg:min-h-[4.5rem] lg:px-8 xl:min-h-20">
+        <Link href="/" className="group relative z-10 flex shrink-0 items-center px-1 py-1" aria-label="Arrow CyberTech home">
+          <img src="/assets/logo1.png" alt="Arrow CyberTech logo" className="h-12 w-auto max-w-[min(200px,52vw)] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14 md:h-16 lg:h-16 xl:h-20"/>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
+        <nav className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 xl:gap-7 lg:flex">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             if (link.hasMega) {
                 return (<div key={link.label} className="relative py-2" onMouseEnter={openMegaMenu} onMouseLeave={scheduleMegaMenuClose}>
-                  <button className={clsx("flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold hover:bg-cyan-50 hover:text-brand-cyan transition-colors cursor-pointer", pathname.startsWith("/services") ? "text-brand-cyan" : "text-slate-700")}>
+                  <button className={clsx("flex items-center gap-1 rounded-full px-2.5 py-2 text-sm font-semibold hover:bg-cyan-50 hover:text-brand-cyan transition-colors cursor-pointer xl:px-3", pathname.startsWith("/services") ? "text-brand-cyan" : "text-slate-700")}>
                     Services
                     <ChevronDown className={clsx("w-4 h-4 transition-transform duration-300", activeCategory === "services" && "rotate-180")}/>
                   </button>
                 </div>);
             }
-            return (<Link key={link.label} href={link.href} className={clsx("text-sm font-semibold transition-colors relative px-3 py-2 hover:text-brand-blue", isActive ? "text-brand-cyan" : "text-slate-700")}>
+            return (<Link key={link.label} href={link.href} className={clsx("relative px-2.5 py-2 text-sm font-semibold transition-colors hover:text-brand-blue xl:px-3", isActive ? "text-brand-cyan" : "text-slate-700")}>
                 {link.label}
-                {isActive && (<motion.span layoutId="navbar-indicator" className="absolute bottom-1.5 left-3 right-3 h-[2px] rounded-full bg-brand-cyan"/>)}
+                {isActive && (<motion.span layoutId="navbar-indicator" className="absolute bottom-1.5 left-2.5 right-2.5 h-[2px] rounded-full bg-brand-cyan xl:left-3 xl:right-3"/>)}
               </Link>);
         })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <Link href="/contact">
-            <Button variant="cyber-glow" size="sm">
-              Schedule Audit
-            </Button>
-          </Link>
-        </div>
-
-        <button onClick={() => dispatch(toggleMenu())} className="lg:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 hover:text-brand-blue shadow-sm cursor-pointer" aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isMenuOpen}>
-          {isMenuOpen ? <X className="w-7 h-7"/> : <Menu className="w-7 h-7"/>}
+        <button onClick={() => dispatch(toggleMenu())} className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm hover:text-brand-blue cursor-pointer lg:hidden" aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isMenuOpen}>
+          {isMenuOpen ? <X className="w-6 h-6"/> : <Menu className="w-6 h-6"/>}
         </button>
       </div>
 
@@ -162,9 +155,9 @@ export default function Header() {
               <div className="px-6 py-6 space-y-3">
                 {navLinks.map((link) => (<div key={link.label} className="border-b border-slate-200/70 pb-3">
                     {link.hasMega ? (<div>
-                        <button type="button" onClick={() => setMobileServicesOpen((open) => !open)} className="flex w-full items-center justify-between py-2 text-left text-lg font-bold text-slate-800 transition-colors hover:text-brand-blue" aria-expanded={mobileServicesOpen}>
+                        <button type="button" onClick={() => setMobileServicesOpen((open) => !open)} className="flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold text-slate-800 transition-colors hover:text-brand-blue sm:text-base" aria-expanded={mobileServicesOpen}>
                           <span>Services</span>
-                          <ChevronDown className={clsx("w-5 h-5 transition-transform duration-200", mobileServicesOpen && "rotate-180 text-brand-cyan")}/>
+                          <ChevronDown className={clsx("h-4 w-4 transition-transform duration-200 sm:h-5 sm:w-5", mobileServicesOpen && "rotate-180 text-brand-cyan")}/>
                         </button>
 
                         <AnimatePresence initial={false}>
@@ -187,18 +180,10 @@ export default function Header() {
                               </div>
                             </motion.div>)}
                         </AnimatePresence>
-                      </div>) : (<Link href={link.href} className={clsx("block py-2 text-lg font-bold transition-colors hover:text-brand-blue", pathname === link.href ? "text-brand-cyan" : "text-slate-800")}>
+                      </div>) : (<Link href={link.href} className={clsx("block py-2 text-[15px] font-semibold transition-colors hover:text-brand-blue sm:text-base", pathname === link.href ? "text-brand-cyan" : "text-slate-800")}>
                         {link.label}
                       </Link>)}
                   </div>))}
-
-                <div className="pt-4">
-                  <Link href="/contact" className="block w-full">
-                    <Button variant="cyber-glow" className="w-full justify-center">
-                      Schedule Audit
-                    </Button>
-                  </Link>
-                </div>
               </div>
             </motion.div>
           </>)}

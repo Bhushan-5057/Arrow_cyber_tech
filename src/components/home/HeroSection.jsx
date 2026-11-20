@@ -29,7 +29,7 @@ export default function HeroSection() {
         gridOffsetY.set((currentY + speedY) % 40);
     });
     const maskImage = useMotionTemplate `radial-gradient(300px circle at ${mouseX}px ${mouseY}px, black, transparent)`;
-    return (<section ref={containerRef} onMouseMove={handleMouseMove} className="relative isolate flex min-h-[62vh] items-center overflow-hidden bg-slate-50 pt-16 pb-10 sm:min-h-[66vh] sm:pt-20 sm:pb-12 lg:min-h-[70vh] lg:pt-20 lg:pb-14">
+    return (<section ref={containerRef} onMouseMove={handleMouseMove} className="relative isolate -mt-[var(--header-offset)] flex min-h-[58vh] items-start overflow-hidden bg-slate-50 pt-[calc(var(--header-offset)+0.25rem)] pb-10 sm:min-h-[62vh] sm:pt-[calc(var(--header-offset)+0.5rem)] sm:pb-12 lg:min-h-[68vh] lg:pt-[calc(var(--header-offset)+1rem)] lg:pb-14">
       <div className="absolute inset-0 z-0 opacity-[0.08]">
         <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY}/>
       </div>
@@ -45,7 +45,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }} className="mx-auto flex max-w-4xl flex-col items-center">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, duration: 0.55 }} className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-cyan-200/80 bg-white/70 px-3 py-2 text-[11px] font-semibold text-slate-700 shadow-sm shadow-cyan-900/5 backdrop-blur-xl sm:px-3.5 sm:text-xs">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, duration: 0.55 }} className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-cyan-200/80 bg-white/80 px-3 py-1.5 text-[11px] font-semibold text-slate-700 shadow-sm shadow-cyan-900/5 backdrop-blur-xl sm:px-3.5 sm:py-2 sm:text-xs">
             <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-100 text-brand-cyan">
               <ShieldCheck className="h-3.5 w-3.5"/>
             </span>

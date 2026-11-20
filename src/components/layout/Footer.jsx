@@ -17,17 +17,8 @@ export default function Footer() {
               Global enterprise penetration testing, GRC audits, and advanced cybersecurity operations. Securing next-generation technology assets.
             </p>
             <div className="flex flex-wrap gap-3 pt-2 sm:gap-4">
-              <a href="https://www.linkedin.com/company/arrow-cyber-technologies/" className="w-8 h-8 rounded bg-slate-100 border border-slate-200 hover:border-brand-cyan hover:text-brand-cyan flex items-center justify-center text-slate-600 transition-colors">
-                <FaLinkedin className="w-4 h-4"/>
-              </a>
-              <a href="#" className="w-8 h-8 rounded bg-slate-100 border border-slate-200 hover:border-brand-cyan hover:text-brand-cyan flex items-center justify-center text-slate-600 transition-colors">
-                <FaXTwitter className="w-4 h-4"/>
-              </a>
-              <a href="#" className="w-8 h-8 rounded bg-slate-100 border border-slate-200 hover:border-brand-cyan hover:text-brand-cyan flex items-center justify-center text-slate-600 transition-colors">
-                <FaInstagram className="w-4 h-4"/>
-              </a>
-              <a href="#" className="w-8 h-8 rounded bg-slate-100 border border-slate-200 hover:border-brand-cyan hover:text-brand-cyan flex items-center justify-center text-slate-600 transition-colors">
-                <FaFacebook className="w-4 h-4"/>
+              <a href="https://www.linkedin.com/company/arrow-cyber-technologies/" className="w-10 h-10 rounded bg-slate-100 border border-slate-200 hover:border-brand-cyan hover:text-brand-cyan flex items-center justify-center text-slate-600 transition-colors">
+                <FaLinkedin className="w-8 h-8"/>
               </a>
             </div>
           </div>

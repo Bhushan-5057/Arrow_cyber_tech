@@ -26,19 +26,19 @@ export default function ContactPage() {
         e.preventDefault();
         dispatch(submitContactForm(form));
     };
-    return (<div className="relative min-h-screen overflow-hidden bg-linear-to-b from-cyan-50/40 via-white to-white">
+    return (<div className="relative -mt-[var(--header-offset)] min-h-screen overflow-hidden bg-linear-to-b from-cyan-50/40 via-white to-white pt-[var(--header-offset)]">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-[-5%] top-[-8%] h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"/>
         <div className="absolute right-[-8%] top-[35%] h-80 w-80 rounded-full bg-violet-400/20 blur-3xl"/>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, ease: "easeOut" }} className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 inline-flex items-center rounded-full border border-cyan-200/80 bg-cyan-50/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-cyan">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-12 pt-1 sm:gap-10 sm:px-6 sm:pt-3 lg:px-8 lg:pb-16 lg:pt-5">
+        <motion.section initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="mx-auto max-w-3xl text-center">
+          <span className="mb-3 inline-flex items-center rounded-full border border-cyan-200/80 bg-cyan-50/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-cyan">
             Get in Touch
           </span>
           <h1 className="text-4xl font-extrabold leading-tight text-slate-950 sm:text-5xl">
-            Let&apos;s Secure
+            Let&apos;s Secure{" "}
             <br className="hidden sm:block"/>
             Your Business
           </h1>
@@ -126,14 +126,14 @@ export default function ContactPage() {
                       <label className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
                         Your Name
                       </label>
-                      <input type="text" required value={form.name} onChange={(e) => handleInputChange("name", e.target.value)} placeholder="e.g. Kabir Mehta" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
+                      <input type="text" required value={form.name} onChange={(e) => handleInputChange("name", e.target.value)} placeholder="John Doe" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
                         Business Email
                       </label>
-                      <input type="email" required value={form.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder="e.g. user@company.com" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
+                      <input type="email" required value={form.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder="john@company.com" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
                     </div>
                   </div>
 
@@ -142,7 +142,7 @@ export default function ContactPage() {
                       <label className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
                         Company Name
                       </label>
-                      <input type="text" required value={form.company} onChange={(e) => handleInputChange("company", e.target.value)} placeholder="e.g. Tech Systems Inc" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
+                      <input type="text" required value={form.company} onChange={(e) => handleInputChange("company", e.target.value)} placeholder="XYZ Systems Inc" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-950 transition-all duration-300 hover:border-slate-300 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/20"/>
                     </div>
 
                     <div className="space-y-2">

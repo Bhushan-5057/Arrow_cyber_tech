@@ -40,7 +40,7 @@ export default function RootLayout({
 
             <AOSInit />
             <Header />
-            <main className="relative z-10 flex-grow pt-[68px] sm:pt-[72px] lg:pt-[80px] xl:pt-[88px]">
+            <main className="relative z-10 flex-grow pt-[var(--header-offset)]">
               {children}
             </main>
             <Footer />
