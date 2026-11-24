@@ -32,15 +32,13 @@ export default function ContactPage() {
         <div className="absolute right-[-8%] top-[35%] h-80 w-80 rounded-full bg-violet-400/20 blur-3xl"/>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-12 pt-1 sm:gap-10 sm:px-6 sm:pt-3 lg:px-8 lg:pb-16 lg:pt-5">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-12 pt-4 sm:gap-10 sm:px-6 sm:pt-6 lg:px-8 lg:pb-16 lg:pt-8">
         <motion.section initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="mx-auto max-w-3xl text-center">
           <span className="mb-3 inline-flex items-center rounded-full border border-cyan-200/80 bg-cyan-50/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-cyan">
             Get in Touch
           </span>
           <h1 className="text-4xl font-extrabold leading-tight text-slate-950 sm:text-5xl">
-            Let&apos;s Secure{" "}
-            <br className="hidden sm:block"/>
-            Your Business
+            Let&apos;s Secure Your Business
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
             Our security specialists are ready to help with VAPT, GRC, SOC 2, ISO 27001, source code review, and cybersecurity operations.

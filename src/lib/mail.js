@@ -29,7 +29,9 @@ export function validateMailEnv() {
  */
 export function createTransporter() {
   const port = Number(process.env.SMTP_PORT) || 465;
-  const secure = port === 465;
+  const secureEnv = String(process.env.SMTP_SECURE || "").toLowerCase();
+  const secure =
+    secureEnv === "true" || secureEnv === "1" || (secureEnv === "" && port === 465);
 
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -38,6 +40,13 @@ export function createTransporter() {
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
+    },
+    connectionTimeout: 20000,
+    greetingTimeout: 20000,
+    socketTimeout: 30000,
+    tls: {
+      minVersion: "TLSv1.2",
+      servername: process.env.SMTP_HOST,
     },
   });
 }
@@ -90,20 +99,30 @@ export async function sendContactEmails({
 
   const transporter = createTransporter();
   const businessEmail = process.env.BUSINESS_EMAIL;
+  const replyAddress = businessEmail || "contact@arrowcybertech.com";
 
-  await Promise.all([
-    sendMail({
-      transporter,
-      to: businessEmail,
-      subject: "New Security Assessment Request | ArrowCyberTech",
-      html: businessHtml,
-      replyTo: customerEmail,
-    }),
-    sendMail({
-      transporter,
-      to: customerEmail,
-      subject: "We've Received Your Security Assessment Request",
-      html: customerHtml,
-    }),
-  ]);
+  try {
+    await transporter.verify();
+  } catch (error) {
+    error.code = error.code || "SMTP_VERIFY_FAILED";
+    throw error;
+  }
+
+  // Send business notification first, then customer confirmation.
+  // Keeps reply-to on the customer email pointed at contact@.
+  await sendMail({
+    transporter,
+    to: businessEmail,
+    subject: "New Security Assessment Request | ArrowCyberTech",
+    html: businessHtml,
+    replyTo: customerEmail,
+  });
+
+  await sendMail({
+    transporter,
+    to: customerEmail,
+    subject: "We've Received Your Security Assessment Request",
+    html: customerHtml,
+    replyTo: replyAddress,
+  });
 }

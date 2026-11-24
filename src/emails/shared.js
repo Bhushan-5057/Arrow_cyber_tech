@@ -22,7 +22,8 @@ function getSiteConfig() {
     companyName,
     logoUrl:
       "https://res.cloudinary.com/dmpknadzu/image/upload/v1784012887/ACTlogo1_kcpznr.png",
-    supportEmail: "support@arrowcybertech.com",
+    contactEmail:
+      process.env.BUSINESS_EMAIL || "contact@arrowcybertech.com",
     social: {
       linkedin: "https://www.linkedin.com/company/arrow-cyber-technologies/",
       facebook: `${website}`,
@@ -175,7 +176,7 @@ export function renderEmailDocument({ previewText, bodyHtml }) {
 }
 
 export function renderEmailFooter() {
-  const { companyName, social, socialIcons, supportEmail, website } = getSiteConfig();
+  const { companyName, social, socialIcons, contactEmail, website } = getSiteConfig();
   const year = new Date().getFullYear();
 
   return `
@@ -192,7 +193,7 @@ export function renderEmailFooter() {
           Protecting Businesses Through Advanced Cybersecurity
         </div>
         <div style="font-size:12px;color:${BRAND.muted};line-height:1.7;">
-          <a href="mailto:${supportEmail}" style="color:${BRAND.primary};text-decoration:none;">${supportEmail}</a>
+          <a href="mailto:${contactEmail}" style="color:${BRAND.primary};text-decoration:none;">${contactEmail}</a>
           &nbsp;·&nbsp;
           <a href="${website}" style="color:${BRAND.primary};text-decoration:none;">${website.replace(/^https?:\/\//, "")}</a>
         </div>

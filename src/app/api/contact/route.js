@@ -45,7 +45,8 @@ export async function POST(request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to send email.",
+          message: "Email service is not configured. Please try again later.",
+          code: "MAIL_ENV_MISSING",
         },
         { status: 500 }
       );
@@ -83,12 +84,19 @@ export async function POST(request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("[contact] Failed to send emails:", error);
+    console.error("[contact] Failed to send emails:", {
+      message: error?.message,
+      code: error?.code,
+      response: error?.response,
+      responseCode: error?.responseCode,
+      command: error?.command,
+    });
 
     return NextResponse.json(
       {
         success: false,
-        message: "Unable to send email.",
+        message: "Unable to send email. Please try again shortly.",
+        code: error?.code || "MAIL_SEND_FAILED",
       },
       { status: 500 }
     );

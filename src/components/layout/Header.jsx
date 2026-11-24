@@ -95,23 +95,23 @@ export default function Header() {
             : "border-b border-transparent bg-slate-50/90 backdrop-blur-md")}>
       <div className="relative mx-auto flex min-h-14 max-w-400 min-w-0 items-center justify-between gap-3 px-4 sm:min-h-16 sm:gap-6 sm:px-6 lg:min-h-[4.5rem] lg:px-8 xl:min-h-20">
         <Link href="/" className="group relative z-10 flex shrink-0 items-center px-1 py-1" aria-label="Arrow CyberTech home">
-          <img src="/assets/logo1.png" alt="Arrow CyberTech logo" className="h-12 w-auto max-w-[min(200px,52vw)] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14 md:h-16 lg:h-16 xl:h-20"/>
+          <img src="/assets/logo1.png" alt="Arrow CyberTech logo" className="h-12 w-auto max-w-[min(200px,52vw)] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14 md:h-16 lg:h-[3.75rem] xl:h-20"/>
         </Link>
 
-        <nav className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 xl:gap-7 lg:flex">
+        <nav className="absolute left-1/2 top-1/2 z-10 hidden w-max max-w-[calc(100%-12rem)] -translate-x-1/2 -translate-y-1/2 flex-nowrap items-center gap-1 xl:max-w-none xl:gap-6 lg:flex">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             if (link.hasMega) {
-                return (<div key={link.label} className="relative py-2" onMouseEnter={openMegaMenu} onMouseLeave={scheduleMegaMenuClose}>
-                  <button className={clsx("flex items-center gap-1 rounded-full px-2.5 py-2 text-sm font-semibold hover:bg-cyan-50 hover:text-brand-cyan transition-colors cursor-pointer xl:px-3", pathname.startsWith("/services") ? "text-brand-cyan" : "text-slate-700")}>
+                return (<div key={link.label} className="relative shrink-0 py-2" onMouseEnter={openMegaMenu} onMouseLeave={scheduleMegaMenuClose}>
+                  <button className={clsx("flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-sm font-semibold hover:bg-cyan-50 hover:text-brand-cyan transition-colors cursor-pointer xl:px-3", pathname.startsWith("/services") ? "text-brand-cyan" : "text-slate-700")}>
                     Services
-                    <ChevronDown className={clsx("w-4 h-4 transition-transform duration-300", activeCategory === "services" && "rotate-180")}/>
+                    <ChevronDown className={clsx("h-4 w-4 shrink-0 transition-transform duration-300", activeCategory === "services" && "rotate-180")}/>
                   </button>
                 </div>);
             }
-            return (<Link key={link.label} href={link.href} className={clsx("relative px-2.5 py-2 text-sm font-semibold transition-colors hover:text-brand-blue xl:px-3", isActive ? "text-brand-cyan" : "text-slate-700")}>
+            return (<Link key={link.label} href={link.href} className={clsx("relative shrink-0 whitespace-nowrap px-2 py-2 text-sm font-semibold transition-colors hover:text-brand-blue xl:px-3", isActive ? "text-brand-cyan" : "text-slate-700")}>
                 {link.label}
-                {isActive && (<motion.span layoutId="navbar-indicator" className="absolute bottom-1.5 left-2.5 right-2.5 h-[2px] rounded-full bg-brand-cyan xl:left-3 xl:right-3"/>)}
+                {isActive && (<motion.span layoutId="navbar-indicator" className="absolute bottom-1.5 left-2 right-2 h-[2px] rounded-full bg-brand-cyan xl:left-3 xl:right-3"/>)}
               </Link>);
         })}
         </nav>
